@@ -2,22 +2,25 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
+    
+    /* 【UX 优化】锁定页面，防止拖动时移动或缩放 */
+    overflow: hidden; 
+    touch-action: pan-x pan-y; 
 }
 
 /* 定义 2x3 的网格容器 */
 #layout-grid {
     display: grid;
-    /* 2 rows x 3 columns */
     grid-template-rows: 100px 100px;
     grid-template-columns: 100px 100px 100px;
-    gap: 10px; /* 格子之间的间距 */
+    gap: 10px;
     width: 320px;
     margin: 20px auto;
     border: 3px solid #ccc;
     padding: 5px;
 }
 
-/* 定义网格内的槽位样式 (更清晰的实线边框) */
+/* 定义网格内的槽位样式 */
 .slot {
     border: 2px solid #aaa; 
     background-color: #f0f0f0; 
@@ -26,13 +29,12 @@ body {
     justify-content: center;
 }
 
-/* 待放置部门列表 (可拖放回的区域，带有清晰边框) */
+/* 待放置部门列表 (部门池) */
 #department-pool {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 10px;
-    /* 清晰的边框样式 */
     border: 2px dashed #007bff; 
     padding: 20px;
     background-color: #eaf6ff;
@@ -40,18 +42,32 @@ body {
     min-height: 50px;
 }
 
-/* 可拖动部门的样式 (字体大小调整，确保名称和数字在同一行) */
+/* 可拖动部门的样式 (两行显示和字体优化) */
 .department {
     width: 90px;
-    height: 30px;
+    height: 40px; /* 增加高度 */
     background-color: #4CAF50;
     color: white;
-    padding: 5px;
+    padding: 5px 0; 
     border-radius: 5px;
-    cursor: move; 
-    line-height: 20px;
-    
-    /* 字体优化 */
-    font-size: 11px; 
-    white-space: nowrap; /* 强制文本不换行 */
+    cursor: grab; 
+
+    /* Flexbox 垂直堆叠 */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+}
+
+.dept-id {
+    font-size: 16px; 
+    font-weight: bold;
+    line-height: 16px; 
+}
+
+.dept-name {
+    font-size: 9px; 
+    line-height: 10px;
+    white-space: nowrap;
+    text-align: center;
 }
