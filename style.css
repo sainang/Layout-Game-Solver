@@ -3,7 +3,7 @@ body {
     text-align: center;
     padding: 20px;
     
-    /* 【UX 优化】锁定页面，防止拖动时移动或缩放 */
+    /* UX 优化：锁定页面，防止拖动时移动或缩放 */
     overflow: hidden; 
     touch-action: pan-x pan-y; 
 }
@@ -42,7 +42,7 @@ body {
     min-height: 50px;
 }
 
-/* 可拖动部门的样式 (两行显示和字体优化) */
+/* 可拖动部门的样式 (核心优化：两行显示和字体调整) */
 .department {
     width: 90px;
     height: 40px; /* 增加高度 */
