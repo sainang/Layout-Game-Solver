@@ -41,23 +41,19 @@ function calculateDistance(coord1, coord2) {
 function getCostFactor(distance, coordI, coordJ) {
     if (distance === 0) return 0; 
     
-    // 1. D=1 (相邻，H/V) -> 成本 1
     if (distance === 1) {
         return 1;
     } 
 
-    // 2. D=2 时的特殊处理 (检查是否为对角线)
     if (distance === 2) {
         const rowDiff = Math.abs(coordI.r - coordJ.r);
         const colDiff = Math.abs(coordI.c - coordJ.c);
         
-        // 如果是 D=2 且是斜相邻
         if (rowDiff === 1 && colDiff === 1) {
             return 1; // 斜相邻成本为 1
         }
     }
     
-    // 3. 所有其他情况 -> 成本 2
     return 2; 
 }
 
@@ -67,7 +63,6 @@ function getCostFactor(distance, coordI, coordJ) {
 function updateAndCalculateLayout() {
     let totalCost = 0;
     
-    // 1. 确定当前的布局状态: Map<DeptId, SlotId>
     const deptLocation = {}; 
     slots.forEach(slot => {
         if (slot.children.length > 0) {
@@ -76,7 +71,6 @@ function updateAndCalculateLayout() {
         }
     });
 
-    // 2. 遍历所有可能的部门流 (i -> j)
     for (let i = 1; i <= 6; i++) {
         for (let j = 1; j <= 6; j++) {
             if (i === j) continue;
@@ -97,7 +91,6 @@ function updateAndCalculateLayout() {
         }
     }
 
-    // 3. 更新 HTML 结果
     costOutput.textContent = totalCost.toFixed(0); 
     console.log(`新布局的总成本: ${totalCost}`);
 }
@@ -121,7 +114,6 @@ function handleDragOver(e) {
     e.preventDefault(); 
 }
 
-// 通用放置处理函数
 function handleUniversalDrop(e) {
     e.preventDefault();
     const target = e.currentTarget;
@@ -129,21 +121,17 @@ function handleUniversalDrop(e) {
     if (!draggedElement) return;
 
     if (target.classList.contains('slot')) {
-        // --- 放置到网格槽位 (.slot) ---
         const originalSlot = draggedElement.parentNode;
 
         if (target.children.length === 0) {
-            // 目标槽位为空：直接放置
             target.appendChild(draggedElement);
         } else {
-            // 目标槽位不为空：执行交换
             const targetElement = target.children[0];
             target.appendChild(draggedElement);
-            originalSlot.appendChild(targetElement); // 将目标元素移回原槽位
+            originalSlot.appendChild(targetElement);
         }
 
     } else if (target.id === 'department-pool') {
-        // --- 放置到部门池 (#department-pool) ---
         target.appendChild(draggedElement); 
     }
     
