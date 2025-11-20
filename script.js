@@ -1,6 +1,5 @@
 // =================================================================
 // PROJECT: Facility Layout Challenge (Final, Fully Optimized Code)
-// Cost Target: 430
 // =================================================================
 
 
@@ -52,7 +51,7 @@ function getCostFactor(distance, coordI, coordJ) {
         const rowDiff = Math.abs(coordI.r - coordJ.r);
         const colDiff = Math.abs(coordI.c - coordJ.c);
         
-        // 如果是 D=2 且是斜相邻 (rowDiff=1 且 colDiff=1)
+        // 如果是 D=2 且是斜相邻
         if (rowDiff === 1 && colDiff === 1) {
             return 1; // 斜相邻成本为 1
         }
@@ -104,7 +103,7 @@ function updateAndCalculateLayout() {
 }
 
 
-// --- 5. 拖放事件处理 (实现交换和返回原位功能) ---
+// --- 5. 拖放事件处理 ---
 
 let draggedElement = null;
 
@@ -161,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         dept.addEventListener('dragend', handleDragEnd);
     });
 
-    // 为所有可能的放置目标添加监听器
     slots.forEach(slot => {
         slot.addEventListener('dragover', handleDragOver);
         slot.addEventListener('drop', handleUniversalDrop);
