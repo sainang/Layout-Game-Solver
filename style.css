@@ -3,9 +3,11 @@ body {
     text-align: center;
     padding: 20px;
     
-    /* UX 修复：移除阻止缩放的限制 */
+    /* UX 修复：允许手机用户缩放和滚动 */
     overflow: auto; 
     touch-action: auto; 
+    /* 确保在小屏幕上有足够的宽度，防止元素挤压 */
+    min-width: 360px; 
 }
 
 /* 定义 2x3 的网格容器 */
@@ -32,7 +34,7 @@ body {
 /* 待放置部门列表 (部门池) */
 #department-pool {
     margin-top: 30px;
-    /* 关键：允许子行垂直堆叠 */
+    /* 允许子行垂直堆叠 */
     display: block; 
     border: 2px dashed #007bff; 
     padding: 20px;
@@ -40,26 +42,25 @@ body {
     border-radius: 8px;
 }
 
-/* 【关键】部门行容器，用于水平排列 3 个部门 */
+/* 【已优化】部门行容器，增大行间距 */
 .dept-row {
     display: flex;
     justify-content: center;
     gap: 10px; 
-    margin-bottom: 10px; 
+    margin-bottom: 20px; /* 增加行之间的垂直间距 */
 }
 
 
-/* 可拖动部门的样式 (核心优化：两行显示和字体调整) */
+/* 可拖动部门的样式 */
 .department {
     width: 90px;
-    height: 40px; /* 增加高度 */
+    height: 40px; 
     background-color: #4CAF50;
     color: white;
     padding: 5px 0; 
     border-radius: 5px;
     cursor: grab; 
 
-    /* Flexbox 垂直堆叠 */
     display: flex;
     flex-direction: column; 
     align-items: center;
