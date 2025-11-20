@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 定义 2x3 的网格容器 */
+#layout-grid {
+    display: grid;
+    /* 2 rows x 3 columns */
+    grid-template-rows: 100px 100px;
+    grid-template-columns: 100px 100px 100px;
+    gap: 10px; /* 格子之间的间距 */
+    width: 320px;
+    margin: 20px auto;
+    border: 3px solid #ccc;
+    padding: 5px;
+}
+
+/* 定义网格内的槽位样式 (更清晰的实线边框) */
+.slot {
+    border: 2px solid #aaa; 
+    background-color: #f0f0f0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 待放置部门列表 (可拖放回的区域，带有清晰边框) */
+#department-pool {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* 清晰的边框样式 */
+    border: 2px dashed #007bff; 
+    padding: 20px;
+    background-color: #eaf6ff;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+/* 可拖动部门的样式 (字体大小调整，确保名称和数字在同一行) */
+.department {
+    width: 90px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: move; 
+    line-height: 20px;
+    
+    /* 字体优化 */
+    font-size: 11px; 
+    white-space: nowrap; /* 强制文本不换行 */
+}
